@@ -1,0 +1,8 @@
+bundle:
+  name: materials-research-lakehouse
+  engine: direct
+
+targets:
+  dev:
+    mode: development
+    default: true
