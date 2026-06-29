@@ -11,9 +11,13 @@ def spark() -> Generator[SparkSession, None, None]:
         .master("local[2]")
         .appName("materials-research-lakehouse-tests")
         .config("spark.ui.enabled", "false")
-        .config("spark.sql.session.timeZone", "UTC")
         .config("spark.sql.shuffle.partitions", "2")
         .getOrCreate()
+    )
+
+    session.conf.set(
+        "spark.sql.session.timeZone",
+        "UTC",
     )
 
     yield session
