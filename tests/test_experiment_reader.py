@@ -1,7 +1,5 @@
 from pathlib import Path
-from collections.abc import Generator
 
-import pytest
 from pyspark.sql import SparkSession
 
 from materials_research_lakehouse.reader import read_experiment_events
@@ -11,21 +9,6 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SAMPLE_EVENTS_PATH = (
     PROJECT_ROOT / "data" / "sample" / "experiment-events.jsonl"
 )
-
-
-@pytest.fixture(scope="session")
-def spark() -> Generator[SparkSession, None, None]:
-    session = (
-        SparkSession.builder
-        .master("local[2]")
-        .appName("materials-research-lakehouse-tests")
-        .config("spark.ui.enabled", "false")
-        .getOrCreate()
-    )
-
-    yield session
-
-    session.stop()
 
 
 def test_reads_all_sample_experiment_events(
