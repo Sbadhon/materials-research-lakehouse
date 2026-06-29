@@ -1,0 +1,21 @@
+resources:
+  pipelines:
+    materials_research_pipeline:
+      name: materials-research-pipeline-dev
+
+      catalog: ${resources.schemas.materials_research.catalog_name}
+      schema: ${resources.schemas.materials_research.name}
+
+      serverless: true
+      development: true
+      continuous: false
+      channel: CURRENT
+
+      root_path: ${workspace.file_path}/src
+
+      libraries:
+        - glob:
+            include: ../src/materials_research_lakehouse/pipeline.py
+
+      configuration:
+        materials.source_path: /Volumes/${resources.volumes.raw_experiment_files.catalog_name}/${resources.volumes.raw_experiment_files.schema_name}/${resources.volumes.raw_experiment_files.name}/incoming
