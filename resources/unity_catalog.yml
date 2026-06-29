@@ -1,0 +1,13 @@
+resources:
+  schemas:
+    materials_research:
+      name: materials_research_dev
+      catalog_name: workspace
+      comment: Governed data assets for the materials research lakehouse development environment.
+
+  volumes:
+    raw_experiment_files:
+      name: raw_experiment_files
+      catalog_name: ${resources.schemas.materials_research.catalog_name}
+      schema_name: ${resources.schemas.materials_research.name}
+      comment: Landing area for incoming materials research experiment event files.

@@ -2,7 +2,9 @@ bundle:
   name: materials-research-lakehouse
   engine: direct
 
+include:
+  - resources/*.yml
+
 targets:
   dev:
-    mode: development
     default: true
